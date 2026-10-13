@@ -49,15 +49,17 @@ A careful rework of Zen Minimal Exit Menu by DinnoDEV for Zen 1.23.`
 `theme.mac-traffic-lights.hide-glyphs`), schema validated by
 `scripts/validate.py`
 **License:** MIT (original copyright DinnoDEV preserved, see `LICENSE`)
-**Screenshot:** `assets/registry-600x400.png` (must be captured first — see docs/capturing-screenshots.md)
+**Screenshot:** `assets/registry-600x400.png` (captured from the running mod — see docs/capturing-screenshots.md)
 
 ## Checklist before submitting
 
 - [ ] Screenshots captured from the real mod (docs/capturing-screenshots.md)
 - [ ] Manual functional testing done (docs/testing-guide.md)
-- [ ] Release published (v0.1.0-beta shipped 2026-10-13; v0.1.1 pending)
-- [ ] Submission channel re-opened and re-verified (see status above —
-      still frozen as of 2026-10-13)
+- [x] Releases published: [v0.1.0-beta](https://github.com/Vanity96/zen-mac-traffic-lights/releases/tag/v0.1.0-beta)
+      and [v0.1.1](https://github.com/Vanity96/zen-mac-traffic-lights/releases/tag/v0.1.1)
+      (2026-10-13)
+- [ ] Submission: **not submitted — awaiting the registry channel to
+      reopen** (see status above; still frozen as of 2026-10-13)
 - [ ] Preferences text pasted into the form as JSON, exactly as in
       `preferences.json`
 
