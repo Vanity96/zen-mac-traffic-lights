@@ -3,16 +3,15 @@
 Native-style macOS traffic-light window controls for Zen Browser.
 
 <p align="center">
-  <img src="assets/screenshot.png" alt="Zen Browser top-right corner with red, yellow and green traffic-light discs; hovering reveals the close, minimize and zoom marks" width="500">
+  <img src="assets/screenshot-3x.png" alt="Zen Browser top-right corner with red, yellow and green traffic-light discs; hovering reveals the close, minimize and zoom marks" width="500">
   <sub>Captured from the running mod (Zen 1.23.2b, Windows, dark theme, 3× upscale for readability — see <a href="docs/capturing-screenshots.md">docs/capturing-screenshots.md</a>).</sub>
 </p>
 
 Close = red, minimize = yellow, zoom/maximize = green, in macOS order, with
 the same disc size and spacing. Hovering the group shows the three small
-macOS marks, and an inactive window dims to neutral gray. On Windows both
-buttons keep their real functions — including Snap Layouts flyouts —
-because the mod only restyles Zen's own window controls, it never replaces
-them.
+macOS marks. On Windows the buttons keep their real close/minimize/
+maximize functions — the mod only restyles Zen's own window controls, it
+never replaces them.
 
 Based on [Zen Minimal Exit Menu](https://github.com/dinnoyow/zen-minimal-exit-menu)
 by DinnoDEV, whose color mapping (minimize green, maximize yellow) didn't
@@ -28,22 +27,26 @@ Zen 1.23.x.
   the toolbar is collapsed, expands with it when you hover near the
   top edge, and hides again with it — no separate hover system
 - Group hover reveals all three marks (as native macOS does)
-- Subtle darken when pressed, neutral gray discs on inactive windows
+- Subtle darken when pressed; an inactive-window gray state is
+  styled but is not yet verified to render (see below)
 - Light and dark theme aware; respects `prefers-reduced-motion`
 - Windows and Linux only — on macOS Zen already draws real traffic
   lights, so nothing here overrides them
 
 ## Install
 
-Get it the standard way:
+**Not yet in the official Zen Mods registry** — install manually from
+source for now:
 
-1. Open `zen://mods` in Zen Browser (Settings → Mods).
-2. Find **Mac Traffic Lights** and click Install.
+1. Clone or download this repository.
+2. Follow [Zen's guide to loading a theme locally](https://docs.zen-browser.app/guides/using-themes)
+   — the entry point is `chrome.css`, preferences come from
+   `preferences.json`.
+3. Restart Zen.
 
-Or load it manually from source: clone or download this repository,
-then follow [Zen's guide to loading a theme locally](https://docs.zen-browser.app/guides/using-themes)
-— the entry point is `chrome.css`, preferences come from
-`preferences.json`.
+Once the mod is accepted into the official registry, it will install
+from `zen://mods` (Settings → Mods) like any other theme. Check the
+releases page for status.
 
 ## Preferences
 
