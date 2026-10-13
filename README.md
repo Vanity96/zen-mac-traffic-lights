@@ -29,7 +29,8 @@ Zen 1.23.x.
 - Group hover reveals all three marks (as native macOS does)
 - Subtle darken when pressed; an inactive-window gray state is
   styled but is not yet verified to render (see below)
-- Light and dark theme aware; respects `prefers-reduced-motion`
+- Light and dark theme aware; hover states are instant — no CSS
+  animations
 - Windows and Linux only — on macOS Zen already draws real traffic
   lights, so nothing here overrides them
 
@@ -74,6 +75,12 @@ is in place, claims are not):
   scaling other than 100%
 - Linux entirely — nothing in the CSS targets macOS, but no Linux test
   was run
+- Native tooltips ("Close", "Minimize", …) still appear with Firefox's
+  built-in delay: suppressing only these buttons' tooltips is not
+  possible with CSS — the tooltip is native (not stylable from a
+  user sheet per-button), and browser-wide tooltip hiding would also
+  kill tab and toolbar hints, so this mod doesn't do it. The buttons'
+  accessible names are unaffected either way.
 
 The glyph set is hand-traced from measured macOS screenshots, not
 extracted Apple assets — shapes are extremely close but pixel-sampled

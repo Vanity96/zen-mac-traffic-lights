@@ -53,8 +53,6 @@
       --mtl-inactive: #dedede;
       --mtl-inactive-rim: #d0d0d2;
 
-      --mtl-transition: 100ms;
-
       /* Hover glyphs: vector paths measured from real macOS screens
        * (CC0 set, lwouis/macos-traffic-light-buttons-as-SVG — credited
        * in the README). Recolored white because only the alpha channel
@@ -175,7 +173,6 @@
       mask-size: 100% 100%;
       mask-repeat: no-repeat;
       mask-position: center;
-      transition: opacity var(--mtl-transition);
     }
 
     .titlebar-close {
@@ -237,12 +234,6 @@
     }
     .titlebar-restore::before:-moz-locale-dir(rtl) {
       transform: none;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .titlebar-button::before {
-        transition: none;
-      }
     }
 
     /* Inactive window: neutral discs, no glyph reveal, no press tint */

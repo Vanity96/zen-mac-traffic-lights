@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Hover marks now appear and disappear instantly (the 100 ms fade was
+  removed), making movement between the discs feel immediate and
+  macOS-like
+
+## 0.1.0-beta
+
 Rework of [dinnoyow/zen-minimal-exit-menu](https://github.com/dinnoyow/zen-minimal-exit-menu)
 (last upstream change: 2024-11-27), modernized for Zen 1.23.2b (Firefox 157.0.1).
 
