@@ -1,10 +1,14 @@
 # Changelog
 
-## Unreleased
+## 0.1.1
 
 - Hover marks now appear and disappear instantly (the 100 ms fade was
   removed), making movement between the discs feel immediate and
   macOS-like
+- Native tooltips ("Close", "Minimize", …) are left in place
+  deliberately — they cannot be suppressed per-button by a CSS-only
+  mod, and browser-wide tooltip hiding would take tab and toolbar
+  hints with them; documented in the README
 
 ## 0.1.0-beta
 
