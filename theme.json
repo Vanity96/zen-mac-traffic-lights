@@ -8,7 +8,7 @@
   "createdAt": "2026-10-13",
   "updatedAt": "2026-10-13",
   "readme": "https://raw.githubusercontent.com/Vanity96/zen-mac-traffic-lights/main/README.md",
-  "image": "https://raw.githubusercontent.com/Vanity96/zen-mac-traffic-lights/main/assets/mac-traffic-lights-sine-600x400.png",
+  "image": "https://raw.githubusercontent.com/Vanity96/zen-mac-traffic-lights/main/assets/example1.png",
   "style": {
     "chrome": "chrome.css"
   },
