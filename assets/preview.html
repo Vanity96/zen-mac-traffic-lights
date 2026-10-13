@@ -1,0 +1,113 @@
+<!doctype html>
+<!--
+  Design preview — NOT a screenshot of the browser. This mirrors chrome.css
+  so iterations on colors/geometry can be reviewed quickly. The real
+  acceptance test is Zen Browser (see docs/testing-guide.md).
+-->
+<html>
+<head>
+<meta charset="utf-8">
+<title>Mac Traffic Lights — design preview</title>
+<style>
+  :root {
+    --mtl-size: 12px;
+    --mtl-hit: 20px;
+    --mtl-halo: 4px;
+    --mtl-close: #ff5f57;      --mtl-close-rim: #e0463e;
+    --mtl-minimize: #febc2e;   --mtl-minimize-rim: #dea123;
+    --mtl-zoom: #28c840;       --mtl-zoom-rim: #1aab29;
+    --mtl-glyph-close: #460804;
+    --mtl-glyph-minimize: #90591d;
+    --mtl-glyph-zoom: #2a6218;
+    --mtl-inactive: #dedede;   --mtl-inactive-rim: #d0d0d2;
+    --mtl-glyph-close-svg: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2085.4%2085.4'%20fill='white'%3E%3Cpath%20d=%22m22.5%2057.8%2035.3-35.3c1.4-1.4%203.6-1.4%205%200l.1.1c1.4%201.4%201.4%203.6%200%205l-35.3%2035.3c-1.4%201.4-3.6%201.4-5%200l-.1-.1c-1.3-1.4-1.3-3.6%200-5z%22/%3E%3Cpath%20d=%22m27.6%2022.5%2035.3%2035.3c1.4%201.4%201.4%203.6%200%205l-.1.1c-1.4%201.4-3.6%201.4-5%200l-35.3-35.3c-1.4-1.4-1.4-3.6%200-5l.1-.1c1.4-1.3%203.6-1.3%205%200z%22/%3E%3C/svg%3E");
+    --mtl-glyph-minimize-svg: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2085.4%2085.4'%20fill='white'%3E%3Cpath%20d=%22m17.8%2039.1h49.9c1.9%200%203.5%201.6%203.5%203.5v.1c0%201.9-1.6%203.5-3.5%203.5h-49.9c-1.9%200-3.5-1.6-3.5-3.5v-.1c0-1.9%201.5-3.5%203.5-3.5z%22/%3E%3C/svg%3E");
+    --mtl-glyph-zoom-svg: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2085.4%2085.4'%20fill='white'%3E%3Cpath%20d=%22m31.2%2020.8h26.7c3.6%200%206.5%202.9%206.5%206.5v26.7zm23.2%2043.7h-26.8c-3.6%200-6.5-2.9-6.5-6.5v-26.8z%22/%3E%3C/svg%3E");
+  }
+  body {
+    margin: 0; font-family: system-ui, sans-serif;
+    display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh;
+  }
+  .panel { padding: 48px; }
+  .light { background: #fcfcfc; color: #222; }
+  .dark  { background: #2b2b2d; color: #eee; }
+  h1 { font-size: 15px; margin: 0 0 24px; font-weight: 600; }
+  h2 { font-size: 11px; font-weight: 600; color: #888; margin: 28px 0 10px;
+       text-transform: uppercase; letter-spacing: .04em; }
+
+  /* Mirrors the .titlebar-* rules in chrome.css */
+  .buttonbox { width: fit-content; background: #f0f0f0; padding: 8px;
+               border-radius: 6px; display: flex; }
+  .dark .buttonbox { background: #363638; }
+  .btn {
+    padding: 0; width: var(--mtl-hit); height: var(--mtl-hit);
+    align-self: center; margin: 0; position: relative;
+    background-color: transparent; border: 0; display: block;
+  }
+  .btn::before {
+    content: ""; position: absolute; inset: var(--mtl-halo);
+    border-radius: 50%; background-color: var(--fill);
+    box-shadow: inset 0 0 0 .5px var(--rim),
+                inset 0 .5px 0 0 rgba(255,255,255,.18);
+  }
+  .btn::after {
+    content: ""; position: absolute; inset: var(--mtl-halo);
+    background-color: var(--glyph);
+    mask-image: var(--svg); mask-size: 100% 100%;
+    mask-repeat: no-repeat; mask-position: center; opacity: 0;
+  }
+  .close  { --fill: var(--mtl-close);    --rim: var(--mtl-close-rim);
+            --glyph: var(--mtl-glyph-close);    --svg: var(--mtl-glyph-close-svg); order: 1; }
+  .min    { --fill: var(--mtl-minimize); --rim: var(--mtl-minimize-rim);
+            --glyph: var(--mtl-glyph-minimize); --svg: var(--mtl-glyph-minimize-svg); order: 2; }
+  .max    { --fill: var(--mtl-zoom);     --rim: var(--mtl-zoom-rim);
+            --glyph: var(--mtl-glyph-zoom);     --svg: var(--mtl-glyph-zoom-svg); order: 3; }
+  .restore{ --fill: var(--mtl-zoom);     --rim: var(--mtl-zoom-rim);
+            --glyph: var(--mtl-glyph-zoom);     --svg: var(--mtl-glyph-zoom-svg); order: 3; }
+  .restore::after { transform: scaleX(-1); }
+
+  .row-hover .btn::after,
+  .btn:hover::after { opacity: 1; }
+  .btn:active::before,
+  .row-press .btn::before { filter: brightness(.86); }
+  .row-inactive .btn::before { background-color: var(--mtl-inactive);
+      box-shadow: inset 0 0 0 .5px var(--mtl-inactive-rim); }
+
+  .caption { font-size: 12px; max-width: 34em; line-height: 1.5;
+             margin: 22px 0 4px; color: #777; }
+  .dark .caption { color: #aaa; }
+</style>
+</head>
+<body>
+  <div class="panel light">
+    <h1>Light mode (macOS reference values)</h1>
+    <h2>default</h2>
+    <div class="buttonbox"><button class="btn close"></button><button class="btn min"></button><button class="btn max"></button></div>
+    <h2>hover group — glyphs revealed</h2>
+    <div class="buttonbox row-hover"><button class="btn close"></button><button class="btn min"></button><button class="btn max"></button></div>
+    <h2>pressed (green shown; same behavior per button)</h2>
+    <div class="buttonbox row-hover row-press"><button class="btn close"></button><button class="btn min"></button><button class="btn max"></button></div>
+    <h2>inactive window</h2>
+    <div class="buttonbox row-inactive"><button class="btn close"></button><button class="btn min"></button><button class="btn max"></button></div>
+    <p class="caption">Live: hover and press the buttons above to check the
+    reveal transition, glyph geometry, and press tint. The zoomed-window
+    (restore) glyph variant:</p>
+    <div class="buttonbox row-hover"><button class="btn close"></button><button class="btn min"></button><button class="btn restore"></button></div>
+  </div>
+  <div class="panel dark">
+    <h1>Dark mode</h1>
+    <h2>default</h2>
+    <div class="buttonbox"><button class="btn close"></button><button class="btn min"></button><button class="btn max"></button></div>
+    <h2>hover group — glyphs revealed</h2>
+    <div class="buttonbox row-hover"><button class="btn close"></button><button class="btn min"></button><button class="btn max"></button></div>
+    <h2>inactive window</h2>
+    <div class="buttonbox row-inactive"><button class="btn close"></button><button class="btn min"></button><button class="btn max"></button></div>
+    <h2>pixel rulers — 12px disc, 20px center spacing</h2>
+    <div style="position:relative; width:fit-content" class="buttonbox">
+      <button class="btn close"></button><button class="btn min"></button><button class="btn max"></button>
+      <div style="position:absolute; right:8px; top:-18px; font-size:10px;
+                  color:#e0463e">← 20px center-to-center</div>
+    </div>
+  </div>
+</body>
+</html>

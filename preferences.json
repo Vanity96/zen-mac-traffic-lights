@@ -1,0 +1,15 @@
+[
+  {
+    "property": "theme.mac-traffic-lights.native",
+    "label": "Use Zen's native window controls instead",
+    "type": "checkbox",
+    "defaultValue": false
+  },
+  {
+    "property": "theme.mac-traffic-lights.hide-glyphs",
+    "label": "Hide the hover glyphs",
+    "type": "checkbox",
+    "defaultValue": false,
+    "disabledOn": ["macos"]
+  }
+]

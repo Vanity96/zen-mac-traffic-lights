@@ -1,0 +1,6 @@
+# Design previews and captures are committed by hand, not generated
+*.tmp
+*.log
+Thumbs.db
+desktop.ini
+scripts/__pycache__/
