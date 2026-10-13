@@ -49,6 +49,19 @@ Once the mod is accepted into the official registry, it will install
 from `zen://mods` (Settings → Mods) like any other theme. Check the
 releases page for status.
 
+### With Sine
+
+The repository ships a manifest for
+[Sine](https://github.com/CosmoCreeper/Sine) (`theme.json`), so it can
+also be installed through the [Sine store](https://github.com/sineorg/store)
+or directly from this repository — paste
+`https://github.com/Vanity96/zen-mac-traffic-lights` into Sine's
+install dialog. The stylesheet is identical on both platforms and the
+mod still disables itself on macOS; the two preference checkboxes are
+read by the same Gecko `-moz-pref()` mechanism, but installing through
+Sine has not been exercised on a machine running Sine (see
+docs/zen-mods-submission.md for what is and is not verified).
+
 ## Preferences
 
 | Setting | Default | What it does |

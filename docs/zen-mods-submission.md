@@ -65,3 +65,44 @@ A careful rework of Zen Minimal Exit Menu by DinnoDEV for Zen 1.23.`
 
 Do not claim testing you didn't run; the registry team rejects mods
 that misstate compatibility.
+
+---
+
+# Sine store (alternative marketplace — prepared, not submitted)
+
+The Sine store (`sineorg/store`, active — last push 2026-10-12) accepts
+mods by opening an `[add-theme]: ` issue; the only required field is the
+GitHub repository URL. A bot fetches the repo's `theme.json`, builds
+`marketplace.json` entry + `mods/<id>/mod.zip` from the full commit SHA,
+and opens a `mod/<id>` PR (verified by reading
+`.github/workflows/add-theme.yml` and `update-marketplace.yml`).
+
+- **Exact submission link (do not click until you decide to submit):**
+  https://github.com/sineorg/store/issues/new?template=add-theme.yml
+  — title `[add-theme]: Mac Traffic Lights`, template field
+  *Theme Homepage* = `https://github.com/Vanity96/zen-mac-traffic-lights`
+- Sine's manager supports direct-from-GitHub install by URL; it looks
+  for `theme.json` at the repo root and supports `chrome.css` and
+  `preferences.json` filenames natively
+  (`src/core/manager.sys.mjs`, `findFile`).
+
+## What is verified vs not (Sine path)
+
+- ✅ `theme.json` present and syntactically valid with the fields the
+  bot + manager read (`id`, `name`, `description`, `version`, `author`,
+  `homepage`, `readme`, `image`, `style.chrome`, `preferences`, `tags`,
+  `fork`), modeled on accepted entries (e.g. Nebula); `chrome.css` and
+  `preferences.json` filenames are explicitly recognized by Sine's
+  `findFile`
+- ✅ After push: `https://raw.githubusercontent.com/Vanity96/zen-mac-traffic-lights/main/theme.json`
+  resolves — this is the same URL the manager fetches for direct-repo
+  install
+- ⚠ **Actual installation through Sine was NOT tested** (Sine is not
+  installed on this machine; its bootloader modifies the browser
+  installation directory — not something to do for the user in this
+  context). The preference checkboxes under Sine are untested too;
+  Sine's code documents a TODO on applying default preferences.
+- On Sine, the `disabledOn: ["macos"]` value may not match Sine's OS
+  identifiers (`Dar`/`WIN`/`Lin`), so a macOS user could still see the
+  "native controls" toggle — harmless, since the stylesheet is inert on
+  macOS by design.

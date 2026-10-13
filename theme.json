@@ -1,0 +1,24 @@
+{
+  "id": "Mac-Traffic-Lights",
+  "homepage": "https://github.com/Vanity96/zen-mac-traffic-lights",
+  "author": "Vanity96",
+  "name": "Mac Traffic Lights",
+  "description": "Native-style macOS traffic-light window controls for Zen Browser.",
+  "version": "0.1.1",
+  "createdAt": "2026-10-13",
+  "updatedAt": "2026-10-13",
+  "readme": "https://raw.githubusercontent.com/Vanity96/zen-mac-traffic-lights/main/README.md",
+  "image": "https://raw.githubusercontent.com/Vanity96/zen-mac-traffic-lights/main/assets/registry-600x400.png",
+  "style": {
+    "chrome": "chrome.css"
+  },
+  "preferences": "preferences.json",
+  "tags": [
+    "chrome",
+    "windows",
+    "window-controls"
+  ],
+  "fork": [
+    "zen"
+  ]
+}
