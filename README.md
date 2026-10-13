@@ -52,16 +52,31 @@ then follow [Zen's guide to loading a theme locally](https://docs.zen-browser.ap
 | Use Zen's native window controls instead | off | Puts the mod to sleep; you get the stock Windows controls back |
 | Hide the hover glyphs | off | Keeps the plain colored discs, no marks on hover |
 
-## Known limitations
+## Known limitations & untested configurations
 
-- The glyph set is hand-traced from measured macOS screenshots, not
-  extracted Apple assets — shapes are extremely close but pixel-sampled
-  against a live macOS screen rather than traced Apple vectors.
-- On Linux, Zen/Firefox may draw window decorations itself depending
-  on your desktop environment and CSD settings; results vary between
-  environments.
-- Windows is the tested platform. Linux behavior is checked in code
-  but not guaranteed to match every window manager.
+Tested: Windows 11, Zen 1.23.2b (Firefox 157), 100% DPI, vertical tabs,
+single-toolbar layout, dark theme, auto-hidden toolbar — close/minimize/
+maximize/restore clicks, hover reveal/hide, glyph reveal. Full matrix in
+[`docs/testing-guide.md`](docs/testing-guide.md). **Not verified** (code
+is in place, claims are not):
+
+- Windows Snap Layouts flyout and title-bar dragging (the native
+  appearance flag is untouched, but no drag test was run)
+- Compact mode, multi-toolbar layouts, sidebar on either side, narrow
+  windows (~600px)
+- Inactive-window gray state — the rule ships and relies on the same
+  selector Zen itself uses, but Gecko would not repaint the unfocused
+  window in the harness, so it was never observed
+- Light theme (dark theme is the one captured), HiDPI / mixed-DPI
+  scaling other than 100%
+- Linux entirely — nothing in the CSS targets macOS, but no Linux test
+  was run
+
+The glyph set is hand-traced from measured macOS screenshots, not
+extracted Apple assets — shapes are extremely close but pixel-sampled
+against a live macOS screen rather than traced Apple vectors. On Linux,
+Zen/Firefox may draw window decorations itself depending on your
+desktop environment and CSD settings; results vary.
 
 See [CHANGELOG.md](CHANGELOG.md) for version history.
 
